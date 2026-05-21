@@ -2,6 +2,7 @@ import { getRouteApi } from "@tanstack/react-router"
 import { ArrowDownAZ, ArrowUpAZ, SlidersHorizontal } from "lucide-react"
 import { type ChangeEvent, useState } from "react"
 import { ConfigDrawer } from "@/components/config-drawer"
+import { DefaultHeader } from "@/components/layout/default-header"
 import { Header } from "@/components/layout/header"
 import { Main } from "@/components/layout/main"
 import { ProfileDropdown } from "@/components/profile-dropdown"
@@ -86,12 +87,7 @@ export function Apps() {
     return (
         <>
             {/* ===== Top Heading ===== */}
-            <Header>
-                <Search className="ms-auto" />
-                <ThemeSwitch />
-                <ConfigDrawer />
-                <ProfileDropdown />
-            </Header>
+            <DefaultHeader />
 
             {/* ===== Content ===== */}
             <Main fixed>

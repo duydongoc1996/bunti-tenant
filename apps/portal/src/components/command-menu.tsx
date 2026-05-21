@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router"
-import { ArrowRight, ChevronRight, Laptop, Moon, Sun } from "lucide-react"
+import { ChevronRight, Laptop, Link2, Moon, Sun } from "lucide-react"
 import React from "react"
 import {
     CommandDialog,
@@ -52,7 +52,7 @@ export function CommandMenu() {
                                             }}
                                         >
                                             <div className="flex size-4 items-center justify-center">
-                                                <ArrowRight className="size-2 text-muted-foreground/80" />
+                                                <Link2 className="size-2 text-muted-foreground/80" />
                                             </div>
                                             {navItem.title}
                                         </CommandItem>
@@ -69,7 +69,7 @@ export function CommandMenu() {
                                         }}
                                     >
                                         <div className="flex size-4 items-center justify-center">
-                                            <ArrowRight className="size-2 text-muted-foreground/80" />
+                                            <Link2 className="size-2 text-muted-foreground/80" />
                                         </div>
                                         {navItem.title} <ChevronRight />{" "}
                                         {subItem.title}

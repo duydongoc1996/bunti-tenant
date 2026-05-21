@@ -15,6 +15,7 @@ import {
 import { useState } from "react"
 import { Fragment } from "react/jsx-runtime"
 import { ConfigDrawer } from "@/components/config-drawer"
+import { DefaultHeader } from "@/components/layout/default-header"
 import { Header } from "@/components/layout/header"
 import { Main } from "@/components/layout/main"
 import { ProfileDropdown } from "@/components/profile-dropdown"
@@ -65,12 +66,7 @@ export function Chats() {
     return (
         <>
             {/* ===== Top Heading ===== */}
-            <Header>
-                <Search className="ms-auto" />
-                <ThemeSwitch />
-                <ConfigDrawer />
-                <ProfileDropdown />
-            </Header>
+            <DefaultHeader />
 
             <Main fixed>
                 <section className="flex h-full gap-6">

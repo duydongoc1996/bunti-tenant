@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router"
-import { Building2, ChevronsUpDown, Cog, MailPlus } from "lucide-react"
+import { Building2, ChevronsUpDown, Cog, Inbox } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -91,10 +91,12 @@ export function OrgSwitcher() {
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
                             className="gap-2 p-2"
-                            onClick={() => navigate({ to: "/invitations" })}
+                            onClick={() =>
+                                navigate({ to: "/settings/invitation" })
+                            }
                         >
                             <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                                <MailPlus className="size-4" />
+                                <Inbox className="size-4" />
                             </div>
                             <div className="font-medium text-muted-foreground">
                                 Invitations

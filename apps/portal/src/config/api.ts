@@ -5,6 +5,7 @@ const base =
 export const api = {
     base,
     auth: `${base}/auth`,
+    admin: `${base}/admin`,
 } as const
 
 export type ApiConfig = typeof api

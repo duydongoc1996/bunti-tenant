@@ -123,7 +123,7 @@ describe("SearchProvider and CommandMenu", () => {
 
         await userEvent.click(getByRole("option", { name: "Settings Account" }))
 
-        expect(mocks.navigate).toHaveBeenCalledWith({ to: "/settings/account" })
+        expect(mocks.navigate).toHaveBeenCalledWith({ to: "/settings" })
         await expect
             .element(getByPlaceholder(COMMAND_MENU_PLACEHOLDER))
             .not.toBeInTheDocument()

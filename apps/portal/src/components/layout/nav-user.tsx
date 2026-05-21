@@ -1,12 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import {
-    BadgeCheck,
-    Bell,
-    ChevronsUpDown,
-    CreditCard,
-    LogOut,
-    Sparkles,
-} from "lucide-react"
+import { Bell, ChevronsUpDown, LogOut, Shield, UserCog } from "lucide-react"
 import { SignOutDialog } from "@/components/sign-out-dialog"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -24,7 +17,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { useSession } from "@/data-provider/auth-provider"
+import { UserRole, useSession } from "@/data-provider/auth-provider"
 import useDialogState from "@/hooks/use-dialog-state"
 
 function getInitials(name?: string | null) {
@@ -47,6 +40,7 @@ export function NavUser() {
     const email = user?.email ?? "—"
     const avatar = user?.image ?? ""
     const initials = getInitials(user?.name)
+    const isAdmin = user?.role === UserRole.ADMIN || false
 
     return (
         <>
@@ -100,24 +94,26 @@ export function NavUser() {
                                 </div>
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem>
-                                    <Sparkles />
-                                    Upgrade to Pro
+                            <DropdownMenuGroup hidden={!isAdmin}>
+                                <DropdownMenuItem asChild>
+                                    <Link to="/admin">
+                                        <Shield />
+                                        Administration
+                                    </Link>
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
                                 <DropdownMenuItem asChild>
-                                    <Link to="/settings/account">
-                                        <BadgeCheck />
+                                    <Link to="/settings">
+                                        <UserCog />
                                         Account
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
-                                    <Link to="/settings">
-                                        <CreditCard />
-                                        Billing
+                                    <Link to="/settings/security">
+                                        <Shield />
+                                        Security
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>

@@ -22,11 +22,11 @@ import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-p
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
-import { Route as AuthenticatedInvitationsIndexRouteImport } from './routes/_authenticated/invitations/index'
+import { Route as AuthenticatedSettingsSecurityRouteImport } from './routes/_authenticated/settings/security'
 import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes/_authenticated/settings/notifications'
+import { Route as AuthenticatedSettingsInvitationRouteImport } from './routes/_authenticated/settings/invitation'
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
-import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as authAcceptInvitationInvitationIdRouteImport } from './routes/(auth)/accept-invitation/$invitationId'
 import { Route as AuthenticatedOrgOrgIdRouteRouteImport } from './routes/_authenticated/org/$orgId/route'
@@ -105,16 +105,22 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
-const AuthenticatedInvitationsIndexRoute =
-  AuthenticatedInvitationsIndexRouteImport.update({
-    id: '/invitations/',
-    path: '/invitations/',
-    getParentRoute: () => AuthenticatedRouteRoute,
+const AuthenticatedSettingsSecurityRoute =
+  AuthenticatedSettingsSecurityRouteImport.update({
+    id: '/security',
+    path: '/security',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
 const AuthenticatedSettingsNotificationsRoute =
   AuthenticatedSettingsNotificationsRouteImport.update({
     id: '/notifications',
     path: '/notifications',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
+  } as any)
+const AuthenticatedSettingsInvitationRoute =
+  AuthenticatedSettingsInvitationRouteImport.update({
+    id: '/invitation',
+    path: '/invitation',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
 const AuthenticatedSettingsDisplayRoute =
@@ -127,12 +133,6 @@ const AuthenticatedSettingsAppearanceRoute =
   AuthenticatedSettingsAppearanceRouteImport.update({
     id: '/appearance',
     path: '/appearance',
-    getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
-const AuthenticatedSettingsAccountRoute =
-  AuthenticatedSettingsAccountRouteImport.update({
-    id: '/account',
-    path: '/account',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
 const AuthenticatedErrorsErrorRoute =
@@ -217,11 +217,11 @@ export interface FileRoutesByFullPath {
   '/org/$orgId': typeof AuthenticatedOrgOrgIdRouteRouteWithChildren
   '/accept-invitation/$invitationId': typeof authAcceptInvitationInvitationIdRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
+  '/settings/invitation': typeof AuthenticatedSettingsInvitationRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-  '/invitations/': typeof AuthenticatedInvitationsIndexRoute
+  '/settings/security': typeof AuthenticatedSettingsSecurityRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/admin/organizations/': typeof AuthenticatedAdminOrganizationsIndexRoute
   '/admin/users/': typeof AuthenticatedAdminUsersIndexRoute
@@ -245,11 +245,11 @@ export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
   '/accept-invitation/$invitationId': typeof authAcceptInvitationInvitationIdRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
+  '/settings/invitation': typeof AuthenticatedSettingsInvitationRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-  '/invitations': typeof AuthenticatedInvitationsIndexRoute
+  '/settings/security': typeof AuthenticatedSettingsSecurityRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/admin/organizations': typeof AuthenticatedAdminOrganizationsIndexRoute
   '/admin/users': typeof AuthenticatedAdminUsersIndexRoute
@@ -277,11 +277,11 @@ export interface FileRoutesById {
   '/_authenticated/org/$orgId': typeof AuthenticatedOrgOrgIdRouteRouteWithChildren
   '/(auth)/accept-invitation/$invitationId': typeof authAcceptInvitationInvitationIdRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
+  '/_authenticated/settings/invitation': typeof AuthenticatedSettingsInvitationRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-  '/_authenticated/invitations/': typeof AuthenticatedInvitationsIndexRoute
+  '/_authenticated/settings/security': typeof AuthenticatedSettingsSecurityRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/admin/organizations/': typeof AuthenticatedAdminOrganizationsIndexRoute
   '/_authenticated/admin/users/': typeof AuthenticatedAdminUsersIndexRoute
@@ -309,11 +309,11 @@ export interface FileRouteTypes {
     | '/org/$orgId'
     | '/accept-invitation/$invitationId'
     | '/errors/$error'
-    | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
+    | '/settings/invitation'
     | '/settings/notifications'
-    | '/invitations/'
+    | '/settings/security'
     | '/settings/'
     | '/admin/organizations/'
     | '/admin/users/'
@@ -337,11 +337,11 @@ export interface FileRouteTypes {
     | '/'
     | '/accept-invitation/$invitationId'
     | '/errors/$error'
-    | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
+    | '/settings/invitation'
     | '/settings/notifications'
-    | '/invitations'
+    | '/settings/security'
     | '/settings'
     | '/admin/organizations'
     | '/admin/users'
@@ -368,11 +368,11 @@ export interface FileRouteTypes {
     | '/_authenticated/org/$orgId'
     | '/(auth)/accept-invitation/$invitationId'
     | '/_authenticated/errors/$error'
-    | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
+    | '/_authenticated/settings/invitation'
     | '/_authenticated/settings/notifications'
-    | '/_authenticated/invitations/'
+    | '/_authenticated/settings/security'
     | '/_authenticated/settings/'
     | '/_authenticated/admin/organizations/'
     | '/_authenticated/admin/users/'
@@ -490,18 +490,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
-    '/_authenticated/invitations/': {
-      id: '/_authenticated/invitations/'
-      path: '/invitations'
-      fullPath: '/invitations/'
-      preLoaderRoute: typeof AuthenticatedInvitationsIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/_authenticated/settings/security': {
+      id: '/_authenticated/settings/security'
+      path: '/security'
+      fullPath: '/settings/security'
+      preLoaderRoute: typeof AuthenticatedSettingsSecurityRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
     '/_authenticated/settings/notifications': {
       id: '/_authenticated/settings/notifications'
       path: '/notifications'
       fullPath: '/settings/notifications'
       preLoaderRoute: typeof AuthenticatedSettingsNotificationsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
+    }
+    '/_authenticated/settings/invitation': {
+      id: '/_authenticated/settings/invitation'
+      path: '/invitation'
+      fullPath: '/settings/invitation'
+      preLoaderRoute: typeof AuthenticatedSettingsInvitationRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
     '/_authenticated/settings/display': {
@@ -516,13 +523,6 @@ declare module '@tanstack/react-router' {
       path: '/appearance'
       fullPath: '/settings/appearance'
       preLoaderRoute: typeof AuthenticatedSettingsAppearanceRouteImport
-      parentRoute: typeof AuthenticatedSettingsRouteRoute
-    }
-    '/_authenticated/settings/account': {
-      id: '/_authenticated/settings/account'
-      path: '/account'
-      fullPath: '/settings/account'
-      preLoaderRoute: typeof AuthenticatedSettingsAccountRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
     '/_authenticated/errors/$error': {
@@ -623,20 +623,22 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedSettingsRouteRouteChildren {
-  AuthenticatedSettingsAccountRoute: typeof AuthenticatedSettingsAccountRoute
   AuthenticatedSettingsAppearanceRoute: typeof AuthenticatedSettingsAppearanceRoute
   AuthenticatedSettingsDisplayRoute: typeof AuthenticatedSettingsDisplayRoute
+  AuthenticatedSettingsInvitationRoute: typeof AuthenticatedSettingsInvitationRoute
   AuthenticatedSettingsNotificationsRoute: typeof AuthenticatedSettingsNotificationsRoute
+  AuthenticatedSettingsSecurityRoute: typeof AuthenticatedSettingsSecurityRoute
   AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
 }
 
 const AuthenticatedSettingsRouteRouteChildren: AuthenticatedSettingsRouteRouteChildren =
   {
-    AuthenticatedSettingsAccountRoute: AuthenticatedSettingsAccountRoute,
     AuthenticatedSettingsAppearanceRoute: AuthenticatedSettingsAppearanceRoute,
     AuthenticatedSettingsDisplayRoute: AuthenticatedSettingsDisplayRoute,
+    AuthenticatedSettingsInvitationRoute: AuthenticatedSettingsInvitationRoute,
     AuthenticatedSettingsNotificationsRoute:
       AuthenticatedSettingsNotificationsRoute,
+    AuthenticatedSettingsSecurityRoute: AuthenticatedSettingsSecurityRoute,
     AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
   }
 
@@ -677,7 +679,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedOrgOrgIdRouteRoute: typeof AuthenticatedOrgOrgIdRouteRouteWithChildren
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
-  AuthenticatedInvitationsIndexRoute: typeof AuthenticatedInvitationsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -686,7 +687,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedOrgOrgIdRouteRoute: AuthenticatedOrgOrgIdRouteRouteWithChildren,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
-  AuthenticatedInvitationsIndexRoute: AuthenticatedInvitationsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

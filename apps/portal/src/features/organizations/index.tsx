@@ -1,10 +1,6 @@
 import { getRouteApi } from "@tanstack/react-router"
-import { ConfigDrawer } from "@/components/config-drawer"
-import { Header } from "@/components/layout/header"
+import { DefaultHeader } from "@/components/layout/default-header"
 import { Main } from "@/components/layout/main"
-import { ProfileDropdown } from "@/components/profile-dropdown"
-import { Search } from "@/components/search"
-import { ThemeSwitch } from "@/components/theme-switch"
 import { OrganizationsDialogs } from "./components/organizations-dialogs"
 import { OrganizationsPrimaryButtons } from "./components/organizations-primary-buttons"
 import { OrganizationsProvider } from "./components/organizations-provider"
@@ -20,12 +16,7 @@ export function Organizations() {
 
     return (
         <OrganizationsProvider>
-            <Header fixed>
-                <Search className="ms-auto" />
-                <ThemeSwitch />
-                <ConfigDrawer />
-                <ProfileDropdown />
-            </Header>
+            <DefaultHeader />
 
             <Main className="flex flex-1 flex-col gap-4 sm:gap-6">
                 <div className="flex flex-wrap items-end justify-between gap-2">

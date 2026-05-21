@@ -5,6 +5,7 @@ import {
     Construction,
     FileX,
     HelpCircle,
+    Inbox,
     LayoutDashboard,
     ListTodo,
     Lock,
@@ -19,7 +20,6 @@ import {
     Users,
     UsersRound,
     UserX,
-    Wrench,
 } from "lucide-react"
 import {
     UserRole,
@@ -91,6 +91,7 @@ export function useSidebarData(): SidebarData {
             },
             {
                 title: "Pages",
+                isHidden: true,
                 items: [
                     {
                         title: "Auth",
@@ -139,20 +140,26 @@ export function useSidebarData(): SidebarData {
             },
             {
                 title: "Other",
+                isHidden: true,
                 items: [
                     {
                         title: "Settings",
                         icon: Settings,
                         items: [
                             {
-                                title: "Profile",
+                                title: "Account",
                                 url: "/settings",
                                 icon: UserCog,
                             },
                             {
-                                title: "Account",
-                                url: "/settings/account",
-                                icon: Wrench,
+                                title: "Security",
+                                url: "/settings/security",
+                                icon: ShieldCheck,
+                            },
+                            {
+                                title: "Invitations",
+                                url: "/settings/invitation",
+                                icon: Inbox,
                             },
                             {
                                 title: "Appearance",

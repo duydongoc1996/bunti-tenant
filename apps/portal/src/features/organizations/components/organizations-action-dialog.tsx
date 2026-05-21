@@ -138,9 +138,7 @@ export function OrganizationsActionDialog({
                 <Form {...form}>
                     <form
                         id="organizations-action-form"
-                        onSubmit={form.handleSubmit((v) =>
-                            mutation.mutate(v)
-                        )}
+                        onSubmit={form.handleSubmit((v) => mutation.mutate(v))}
                         className="space-y-4"
                     >
                         <FormField

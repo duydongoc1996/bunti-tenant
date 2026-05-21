@@ -1,24 +1,32 @@
 import { Outlet } from "@tanstack/react-router"
-import { Bell, Monitor, Palette, UserCog, Wrench } from "lucide-react"
-import { ConfigDrawer } from "@/components/config-drawer"
-import { Header } from "@/components/layout/header"
+import {
+    Bell,
+    Inbox,
+    Monitor,
+    Palette,
+    ShieldCheck,
+    UserCog,
+} from "lucide-react"
+import { DefaultHeader } from "@/components/layout/default-header"
 import { Main } from "@/components/layout/main"
-import { ProfileDropdown } from "@/components/profile-dropdown"
-import { Search } from "@/components/search"
-import { ThemeSwitch } from "@/components/theme-switch"
 import { Separator } from "@/components/ui/separator"
 import { SidebarNav } from "./components/sidebar-nav"
 
 const sidebarNavItems = [
     {
-        title: "Profile",
+        title: "Account",
         href: "/settings",
         icon: <UserCog size={18} />,
     },
     {
-        title: "Account",
-        href: "/settings/account",
-        icon: <Wrench size={18} />,
+        title: "Security",
+        href: "/settings/security",
+        icon: <ShieldCheck size={18} />,
+    },
+    {
+        title: "Invitations",
+        href: "/settings/invitation",
+        icon: <Inbox size={18} />,
     },
     {
         title: "Appearance",
@@ -41,12 +49,7 @@ export function Settings() {
     return (
         <>
             {/* ===== Top Heading ===== */}
-            <Header>
-                <Search className="ms-auto" />
-                <ThemeSwitch />
-                <ConfigDrawer />
-                <ProfileDropdown />
-            </Header>
+            <DefaultHeader />
 
             <Main fixed>
                 <div className="space-y-0.5">

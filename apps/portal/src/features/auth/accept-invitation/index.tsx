@@ -206,8 +206,8 @@ export function AcceptInvitation() {
                         <CardTitle>Invitation no longer pending</CardTitle>
                         <CardDescription>
                             This invitation is currently{" "}
-                            <span className="font-semibold">{inv.status}</span>
-                            . Nothing to do here.
+                            <span className="font-semibold">{inv.status}</span>.
+                            Nothing to do here.
                         </CardDescription>
                     </CardHeader>
                     <CardFooter>

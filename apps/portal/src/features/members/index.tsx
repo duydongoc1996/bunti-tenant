@@ -1,5 +1,6 @@
 import { getRouteApi } from "@tanstack/react-router"
 import { ConfigDrawer } from "@/components/config-drawer"
+import { DefaultHeader } from "@/components/layout/default-header"
 import { Header } from "@/components/layout/header"
 import { Main } from "@/components/layout/main"
 import { ProfileDropdown } from "@/components/profile-dropdown"
@@ -30,12 +31,7 @@ export function Members() {
 
     return (
         <MembersProvider canManage={canManage}>
-            <Header fixed>
-                <Search className="ms-auto" />
-                <ThemeSwitch />
-                <ConfigDrawer />
-                <ProfileDropdown />
-            </Header>
+            <DefaultHeader />
 
             <Main className="flex flex-1 flex-col gap-4 sm:gap-6">
                 <div className="flex flex-wrap items-end justify-between gap-2">
